@@ -1,0 +1,60 @@
+.name-product {
+    color: #000000;
+}
+
+.name-product:hover {
+    color: rgb(60, 137, 251);
+}
+
+.box-img-product:hover {
+    transform: scale(1.1);
+
+    transition: transform 0.3s;
+}
+
+nav {
+    position: relative;
+    z-index: 10;
+    /* Đảm bảo navbar nằm trên slideshow */
+}
+
+.link-menu {
+    color: #000000;
+}
+
+.link-menu:hover {
+    color: rgb(60, 137, 251);
+}
+
+.size-option {
+    border: 1px solid #6d747c;
+}
+
+.size-option:hover {
+    background: #6d747c;
+    color: #ffffff;
+}
+
+.size-option.selected {
+    border: 2px solid #6d6d6d;
+}
+
+.size-option.disabled {
+    border: 1px solid lightgray;
+    color: lightgray;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.carousel-inner
+{
+    cursor: grab;
+
+}
+.thumbnail-carousel::-webkit-scrollbar {
+    display: none;
+}
+
