@@ -134,7 +134,7 @@
                             <textarea name="" disabled id="" class="form-control" rows="3">{{ $order->customer_notes == null ? 'Trống' : $order->customer_notes }}</textarea>
                         </div>
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-sm btn-primary">Cập nhật thông tin</button>
+                            <button type="submit"  {{ $order->status == 'completed' ? 'disabled' : '' }} class="btn btn-sm btn-primary">Cập nhật thông tin</button>
                         </div>
                     </form>
                 </div>

@@ -13,7 +13,8 @@
             <div class="card-header"></div>
             <div class="card-body">
                 <div class="card-body d-flex justify-content-center">
-                    <form action="{{ route('products.update', $product->id) }}" method="post" class="w-75" enctype="multipart/form-data">
+                    <form action="{{ route('products.update', $product->id) }}" method="post" class="w-75"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -58,26 +59,15 @@
                                     <label for="" class="form-label">Kích cỡ và Số lượng</label>
                                     <div id="size-quantity-container">
                                         @foreach ($productVariants as $variant)
-                                            <div class="d-flex mb-2"> <input type="hidden" name="sizes[]"
-                                                    value="{{ $variant->size->size }}"> <span
-                                                    class="me-2">{{ $variant->size->size }}</span> <input type="number"
-                                                    name="quantities[]" class="form-control me-2" min="1"
-                                                    value="{{ $variant->quantity }}" placeholder="Số lượng" required>
+                                            <div class="d-flex align-items-center mb-2"> <input type="hidden" name="sizes[]"
+                                                    value="{{ $variant->size->id }}">
+                                                <span class="me-2">Size: <strong>{{ $variant->size->size }}</strong></span>
+                                                <input type="number" name="quantities[]" class="form-control w-50"
+                                                    min="1" value="{{ $variant->quantity }}" placeholder="Số lượng"
+                                                    required>
                                             </div>
                                         @endforeach
-                                        <select id="size-selector" class="form-select mt-2">
-                                            <option value="" disabled selected>Chọn kích cỡ</option>
-                                            @foreach ($sizes as $size)
-                                                <option value="{{ $size->id }}">{{ $size->size }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('sizes')
-                                            <small class="form-text text-danger text-muted">{{ $message }}</small>
-                                        @enderror
                                     </div>
-                                    @error('sizes')
-                                        <small class="form-text text-danger text-muted">{{ $message }}</small>
-                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Giá</label>

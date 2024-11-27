@@ -26,7 +26,6 @@
                                 <th>Tên sản phẩm</th>
                                 <th>Danh mục</th>
                                 <th>Giá</th>
-                                <th>Lượt mua</th>
                                 <th>Trạng thái</th>
                                 <th>Ngày tạo</th>
                                 <th style="width: 10%" class="text-center">Hành động</th>
@@ -39,17 +38,23 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td>{{ $item->sales_count }}</td>
                                     <td class=" {{ $statusLabels[$item->status]['class'] }}">
                                         {{ $statusLabels[$item->status]['label'] }}
                                     </td>
                                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                     <td>
-                                        <a href="{{ route('products.show', $item->id) }}"
-                                            title="" class="btn btn-link btn-primary btn-lg"
-                                            data-original-title="">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
+                                        <div class="d-flex">
+                                            <a href="{{ route('products.show', $item->id) }}"
+                                                title="" class="btn btn-link btn-primary btn-lg"
+                                                data-original-title="">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form action="{{ route('products.destroy', $item->id) }}" method="post">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button onclick="return confirm('Bạn có muốn xóa sản phẩm này.')" class="btn btn-link btn-lg text-danger"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container mt-4">
+        <h4 class="text-center">Đơn hàng của bạn</h4>
         <div class="d-flex justify-content-center">
             <div class="mt-4 border shadow w-75">
                 @if (session('message'))

@@ -62,6 +62,16 @@ Route::prefix('/order')->group(function () {
 
 Route::get('/pay', [OrderItemController::class, 'pay'])->name('pay');
 
+Route::prefix('/user')->middleware('auth')->group(function() {
+    Route::get('/information', [UserController::class, 'information'])->name('information');
+    Route::put('/change-password', [UserController::class, 'changePassword'])->name('changePassword');
+    Route::get('/order', [UserController::class, 'orderList'])->name('orderList');
+});
+
+Route::prefix('/brand')->group(function() {
+    Route::get('/{category}', [CategoryController::class, 'index'])->name('brand.index');
+});
+
 Route::prefix('/admin')->middleware([CheckAuth::class])->group(function () {
     Route::get('/', [DashbroadController::class, 'dashbroad'])->name('admin.dashbroad');
 

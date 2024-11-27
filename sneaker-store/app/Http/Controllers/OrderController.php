@@ -29,7 +29,7 @@ class OrderController extends Controller
 
         if ($cart) {
             $order = Order::query()->create($data);
-            foreach ($cart as $index => $item) {
+            foreach ($cart as $item) {
                 $item['order_id'] = $order->id;
 
                 OrderItem::query()->create($item);

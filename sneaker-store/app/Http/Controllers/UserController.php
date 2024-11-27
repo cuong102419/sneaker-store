@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,5 +48,32 @@ class UserController extends Controller
     public function logout() {
         Auth::logout();
         return redirect()->route('home')->with('success-auth', 'Đăng xuất thành công.');
+    }
+
+    public function information() {
+        return view('client.user.info');
+    }
+
+    public function changePassword(Request $request) {
+        $data = $request->validate([
+            'fullname' => ['required', 'min:2'],
+            'password' => ['required', 'min:4'],
+            'confirm_password' => ['required', 'same:password'],
+        ]);
+        $user = User::findOrFail(Auth::user()->id);
+        $user->update($data);
+        return redirect()->back()->with('message', 'Cập nhật thành công.');
+    }
+
+    public function orderList() {
+        $orders = Order::where('user_id', Auth::user()->id)->latest('id')->paginate(8) ?? null;
+        $status = [
+            'pending' => ['value' => 'Chờ xử lý', 'class' => 'text-warning'],
+            'processing' => ['value' => 'Đang xử lý', 'class' => 'text-primary'],
+            'completed' => ['value' => 'Hoàn thành', 'class' => 'text-success'],
+            'cancelled' => ['value' => 'Hủy đơn', 'class' => 'text-danger'],
+        ];
+        
+        return view('client.user.order', compact('orders', 'status'));
     }
 }

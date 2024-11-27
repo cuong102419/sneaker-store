@@ -1,0 +1,2 @@
+email quản trị: admin123@gmail.com
+mật khẩu: 12345

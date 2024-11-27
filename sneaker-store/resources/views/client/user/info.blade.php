@@ -1,29 +1,30 @@
 @extends('client.layout.layout')
 
 @section('title')
-    Đăng ký
+    Thông tin tài khoản
 @endsection
 
 @section('content')
     <div class="container mt-3 mb-4">
-        <h4 class="text-center text-uppercase">Đăng ký</h4>
+        <h4 class="text-center text-uppercase">Thông tin tài khoản</h4>
         @if (session('message'))
             <h5 class="text-danger text-center mt-3">{{ session('message') }}</h5>
         @endif
 
         <div class="d-flex justify-content-center">
-            <form class="w-50" action="{{ route('register') }}" method="post">
+            <form class="w-50" action="{{ route('changePassword') }}" method="post">
                 @csrf
+                @method('PUT')
                 <div>
                     <label for="" class="form-label">Họ tên</label>
-                    <input type="text" name="fullname" required class="form-control" placeholder="Nhập họ tên">
+                    <input type="text" name="fullname" required class="form-control" value="{{ Auth::user()->fullname }}" placeholder="Nhập họ tên">
                     @error('fullname')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mt-3">
                     <label for="" class="form-label">Email</label>
-                    <input type="email" name="email" required class="form-control" placeholder="Nhập email">
+                    <input type="email" name="email" required class="form-control" disabled value="{{ Auth::user()->email }}">
                     @error('email')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -43,11 +44,7 @@
                     @enderror
                 </div>
                 <div class="mt-3 d-flex justify-content-between">
-                    <button type="submit" class="btn btn-dark">Đăng ký</button>
-                    <div class="mt-2">
-                        <small><a href="{{ route('formLogin') }}" class="text-decoration-none text-dark">Đăng
-                                nhập.</a></small>
-                    </div>
+                    <button type="submit" class="btn btn-dark">Cập nhật</button>
                 </div>
             </form>
         </div>

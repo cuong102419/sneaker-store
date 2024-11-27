@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Ảnh sản phẩm</label>
-                                    <input type="file" class="form-control" name="image">
+                                    <input type="file" required class="form-control" name="image">
                                     @error('image')
                                         <small id="emailHelp"
                                             class="form-text text-danger text-muted">{{ $message }}</small>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div>
                                     <label for="" class="form-label">Album ảnh sản phẩm</label>
-                                    <input type="file" multiple name="ab_image[]" id="" class="form-control">
+                                    <input type="file" multiple name="ab_image[]" required id="" class="form-control">
                                     @error('ab_image')
                                         <small class="form-text text-danger text-muted">{{ $message }}</small>
                                     @enderror
@@ -81,7 +81,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Mô tả</label>
-                                <textarea class="form-control" name="description" rows="3" placeholder="Nhập mô tả sản phẩm."></textarea>
+                                <textarea class="form-control" name="description" rows="5" placeholder="Nhập mô tả sản phẩm."></textarea>
                                 @error('description')
                                     <small id="emailHelp" class="form-text text-danger text-muted">{{ $message }}</small>
                                 @enderror

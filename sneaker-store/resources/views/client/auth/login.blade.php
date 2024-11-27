@@ -15,14 +15,14 @@
                 @csrf
                 <div>
                     <label for="" class="form-label">Email</label>
-                    <input type="email" required name="email" class="form-control ">
+                    <input type="email" required name="email" class="form-control" placeholder="Nhập email">
                     @error('email')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mt-3">
                     <label for="" class="form-label">Mật khẩu</label>
-                    <input type="password" required name="password" class="form-control ">
+                    <input type="password" required name="password" class="form-control" placeholder="Nhập mật khẩu">
                     @error('password')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

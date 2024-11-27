@@ -113,56 +113,56 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+        $productVariants = ProductVariant::where('product_id', $id)->get();
+        $productAlbums = ProductImage::where('product_id', $id)->get();
 
         $data = $request->validate([
-            'name' => ['required', 'min:4', 'unique:products,name,' . $id],
+            'name' => ['required', 'min:4', 'unique:products'],
             'category_id' => ['required'],
             'price' => ['required', 'numeric', 'min:0'],
             'image' => ['nullable', 'image'],
             'description' => ['required'],
             'sizes' => ['required', 'array'],
-            'sizes.*' => ['exists:sizes,id'],
             'quantities' => ['required', 'array'],
-            'quantities.*' => ['integer', 'min:1'],
             'ab_image' => ['nullable'],
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-            $data['image'] = $this->uploadFile($request, 'image');
-        } else {
-            $data['image'] = $product->image;
-        }
 
         $dataProduct = Arr::except($data, ['sizes', 'quantities', 'ab_image']);
+        $dataVariant = Arr::only($data, ['sizes', 'quantities']);
+        $sizes = $dataVariant['sizes'];
+        $quantities = $dataVariant['quantities'];
+        $albums = $data['ab_image'] ?? null;
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                Storage::delete($product->image);
+            }
+            $dataProduct['image'] = $this->uploadFile($request, 'image');
+        }
         $product->update($dataProduct);
 
-        ProductVariant::where('product_id', $product->id)->delete();
-
-        $sizes = $data['sizes'];
-        $quantities = $data['quantities'];
-
-        foreach ($sizes as $key => $size) {
-            ProductVariant::create([
-                'product_id' => $product->id,
-                'size_id' => $size,
-                'quantity' => $quantities[$key],
-            ]);
+        foreach ($sizes as $key => $size_id) {
+            foreach ($productVariants as $productVariant) {
+                if ($productVariant->size_id == $size_id) {
+                    $productVariant->quantity = $quantities[$key];
+                    $productVariant->save();
+                }
+            }
         }
 
-        if (!empty($data['ab_image'])) {
-            $album = $this->uploadAlbum($request, 'ab_image');
-
-            $oldImages = ProductImage::where('product_id', $product->id)->get();
-            foreach ($oldImages as $image) {
-                Storage::disk('public')->delete($image->image);
-                $image->delete();
+        if ($request->hasFile('ab_image')) {
+            foreach ($productAlbums as $productAlbum) {
+                if ($productAlbum->image) {
+                    Storage::delete($productAlbum->image);
+                    $productAlbum->delete();
+                }
             }
 
-            foreach ($album as $image) {
-                ProductImage::create([
+            $albums = $this->uploadAlbum($request, 'ab_image');
+
+            foreach ($albums as $image) {
+                ProductImage::query()->create([
                     'product_id' => $product->id,
                     'image' => $image,
                 ]);
@@ -170,6 +170,23 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index')->with('success', 'Cập nhật sản phẩm thành công.');
+    }
+
+    public function destroy(Product $product) {
+        $productVariants = ProductVariant::where('product_id', $product->id)->get();
+        $productImages = ProductImage::where('product_id', $product->id)->get();
+
+        foreach ($productVariants as $productVariant) {
+            $productVariant->delete();
+        }
+
+        foreach ($productImages as $productImage) {
+            $productImage->delete();
+        }
+
+        $product->delete();
+
+        return redirect()->back()->with('success','Xóa thành công.');
     }
 
 }

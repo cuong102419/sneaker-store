@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -26,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $cart = Session::get('cart', []);
-            $view->with('cart', $cart);
+            $categories = Category::all();
+
+            $view->with(compact('cart', 'categories'));
         });
     }
 }

@@ -19,9 +19,22 @@
             <a href="{{ route('home') }}" class=" text-decoration-none text-dark">
                 <h4 class="text-uppercase">Sneaker store</h4>
             </a>
-            <ul class="nav">
+            <ul class="nav text-uppercase">
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-none link-menu" href="{{ route('home') }}">Trang chủ</a>
+                    <a class="nav-link text-decoration-none link-menu" href="{{ route('home') }}">Sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-link text-decoration-none text-dark"
+                            data-bs-toggle="dropdown">
+                            THƯƠNG HIỆU
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach ($categories as $item)
+                                <a href="{{ route('brand.index', $item->id) }}" class="dropdown-item">{{ $item->name }}</a>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-decoration-none link-menu" href="#">Liên hệ</a>
@@ -50,9 +63,14 @@
                             </button>
                             <ul class="dropdown-menu">
                                 @if (Auth::user()->roll == 'admin')
-                                    <li><a class="dropdown-item" href="{{ route('admin.dashbroad') }}"><i class="fa-solid fa-gear"></i> Trang
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashbroad') }}"><i
+                                                class="fa-solid fa-gauge me-2"></i> Trang
                                             quản trị</a></li>
                                 @endif
+                                <li><a class="dropdown-item" href="{{ route('orderList') }}"><i
+                                            class="fa-solid fa-clipboard me-2"></i>Đơn hàng</a></li>
+                                <li><a class="dropdown-item" href="{{ route('information') }}"><i
+                                            class="fa-solid fa-gear me-2"></i>Tài khoản</a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"><i
                                             class="fa-solid fa-right-from-bracket me-2"></i>Đăng xuất</a></li>
                             </ul>
