@@ -82,7 +82,7 @@ class CartController extends Controller
         }
 
         session()->put('cart', $cart);
-        // dd($cart);
+
         return redirect()->back();
     }
 }
