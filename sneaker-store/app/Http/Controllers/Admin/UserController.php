@@ -9,8 +9,16 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index() {
-        $users = User::where('id', '<>', Auth::user()->id)->latest('id')->paginate(8);
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $users = User::when($search, function ($query, $search) {
+                return $query->where('id', 'like', '%' . $search . '%')
+                    ->orWhere('fullname', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+            })
+            ->latest('id')
+            ->paginate(8);
         $status = [
             'active' => ['value' => 'Hoạt động', 'class' => 'text-success'],
             'deactive' => ['value' => 'Ngừng hoạt động', 'class' => 'text-danger'],
@@ -23,13 +31,15 @@ class UserController extends Controller
         return view('admin.user.index', compact('users', 'status', 'roll'));
     }
 
-    public function banAccount(User $user) {
+    public function banAccount(User $user)
+    {
         $user->status = 'deactive';
         $user->save();
         return redirect()->back()->with('message', 'Cập nhật thành công.');
     }
 
-    public function unbanAccount(User $user) {
+    public function unbanAccount(User $user)
+    {
         $user->status = 'active';
         $user->save();
         return redirect()->back()->with('message', 'Cập nhật thành công.');

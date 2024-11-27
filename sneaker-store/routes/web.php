@@ -70,6 +70,7 @@ Route::prefix('/user')->middleware('auth')->group(function() {
 
 Route::prefix('/brand')->group(function() {
     Route::get('/{category}', [CategoryController::class, 'index'])->name('brand.index');
+    Route::get('/', [CategoryController::class, 'search'])->name('brand.search');
 });
 
 Route::prefix('/admin')->middleware([CheckAuth::class])->group(function () {

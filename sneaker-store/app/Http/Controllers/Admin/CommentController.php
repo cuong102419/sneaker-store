@@ -8,8 +8,14 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index() {
-        $comments = Comment::query()->latest('id')->paginate(8);
+    public function index(Request $request) {
+        $search = $request->input('search');
+        $comments = Comment::when($search, function($query, $search) {
+            return $query->where('id', 'like', '%' . $search . '%')
+                        ->orWhereHas('user', function($query) use ($search) {
+                            $query->where('email', 'like', '%' . $search . '%');
+                        });
+        })->latest('id')->paginate(8);
         return view('admin.comment.index', compact('comments'));
     }
 

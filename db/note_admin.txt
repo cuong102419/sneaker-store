@@ -1,2 +1,2 @@
-email quản trị: admin123@gmail.com
+email quản trị: admin123@a.com
 mật khẩu: 12345

@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::query()->latest('id')->paginate(8);
+        $search = $request->input('search');
+        $orders = Order::when($search, function($query, $search) {
+            return $query->where('id', 'like', '%' . $search . '%');
+        })->latest('id')->paginate(8);
         $status = [
             'pending' => ['value' => 'Chờ xử lý', 'class' => 'text-warning'],
             'processing' => ['value' => 'Đang xử lý', 'class' => 'text-primary'],

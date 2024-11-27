@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        View::composer('*', function ($view) {
+        View::composer('client.*', function ($view) {
             $cart = Session::get('cart', []);
             $categories = Category::all();
 

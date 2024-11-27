@@ -16,6 +16,17 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                <div>
+                    <form action="{{ route('products.index') }}" class="w-25" method="GET">
+                        @csrf
+                        <div class="d-flex">
+                            <input type="search" name="search" class="form-control"
+                                placeholder="Tìm kiếm theo tên hoặc mã.">
+                            <button type="submit" class="btn btn-info rounded-3 ms-1"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -39,20 +50,21 @@
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td class=" {{ $statusLabels[$item->status]['class'] }}">
-                                        {{ $statusLabels[$item->status]['label'] }}
+                                        <strong>{{ $statusLabels[$item->status]['label'] }}</strong>
                                     </td>
                                     <td>{{ $item->created_at->format('d-m-Y') }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('products.show', $item->id) }}"
-                                                title="" class="btn btn-link btn-primary btn-lg"
-                                                data-original-title="">
+                                            <a href="{{ route('products.show', $item->id) }}" title=""
+                                                class="btn btn-link btn-primary btn-lg" data-original-title="">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <form action="{{ route('products.destroy', $item->id) }}" method="post">
                                                 @csrf
-                                                @method("DELETE")
-                                                <button onclick="return confirm('Bạn có muốn xóa sản phẩm này.')" class="btn btn-link btn-lg text-danger"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                                                @method('DELETE')
+                                                <button onclick="return confirm('Bạn có muốn xóa sản phẩm này.')"
+                                                    class="btn btn-link btn-lg text-danger"><i
+                                                        class="fa-solid fa-xmark fa-lg"></i></button>
                                             </form>
                                         </div>
                                     </td>

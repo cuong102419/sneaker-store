@@ -20,6 +20,7 @@
                         @endif
                         <div>
                             <form action="{{ route('categories.index') }}" class="w-25" method="GET">
+                                @csrf
                                 <div class="d-flex">
                                     <input type="search" name="search" class="form-control" placeholder="Tìm kiếm danh mục.">
                                     <button type="submit" class="btn btn-info rounded-3 ms-1"><i

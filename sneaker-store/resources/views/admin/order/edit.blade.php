@@ -64,7 +64,7 @@
                                     {{ $order->payment_method == 'cod' ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng.' }}
                                     <div>
                                         Trạng thái: <span
-                                            class="{{ $paymentStatus[$order->payment_status]['class'] }}">{{ $paymentStatus[$order->payment_status]['value'] }}</span>
+                                            class="{{ $paymentStatus[$order->payment_status]['class'] }}"><strong>{{ $paymentStatus[$order->payment_status]['value'] }}</strong></span>
                                     </div>
                                 </td>
                                 <td>
@@ -134,7 +134,7 @@
                             <textarea name="" disabled id="" class="form-control" rows="3">{{ $order->customer_notes == null ? 'Trống' : $order->customer_notes }}</textarea>
                         </div>
                         <div class="mt-3">
-                            <button type="submit"  {{ $order->status == 'completed' ? 'disabled' : '' }} class="btn btn-sm btn-primary">Cập nhật thông tin</button>
+                            <button type="submit"  {{ $order->status == 'completed' || $order->status == 'cancelled' ? 'disabled' : '' }} class="btn btn-sm btn-primary">Cập nhật thông tin</button>
                         </div>
                     </form>
                 </div>

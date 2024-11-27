@@ -13,7 +13,8 @@ class CategoryController extends Controller
     {
         $search = $request->input('search');
         $categories = Category::when($search, function($query, $search) {
-            return $query->where('name', 'like', '%' . $search . '%');
+            return $query->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('id', 'like', '%' . $search . '%');
         })->latest('id')->paginate(10);
         return view('admin.category.index', compact('categories'));
     }

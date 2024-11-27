@@ -20,6 +20,9 @@ class UserController extends Controller
 
         if(Auth::attempt($data)) {
             if(Auth::user()->status == 'active') {
+                if(Auth::user()->roll == 'admin') {
+                    return redirect()->route('admin.dashbroad');
+                }
                 return redirect()->route('home')->with('success-auth', 'Đăng nhập thành công.');
             } else {
                 Auth::logout(); 
@@ -73,7 +76,7 @@ class UserController extends Controller
             'completed' => ['value' => 'Hoàn thành', 'class' => 'text-success'],
             'cancelled' => ['value' => 'Hủy đơn', 'class' => 'text-danger'],
         ];
-        
+
         return view('client.user.order', compact('orders', 'status'));
     }
 }

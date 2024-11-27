@@ -52,7 +52,7 @@
                             </li>
                             <li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="admin#">Tài khoản</a>
+                                <a class="dropdown-item" href="{{ route('home') }}">Về trang web</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
                             </li>

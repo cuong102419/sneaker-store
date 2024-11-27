@@ -16,6 +16,15 @@
                         <strong>{{ session('success') }}</strong>
                     </div>
                 @endif
+                <div class="w-25">
+                    <form action="{{ route('comment.index') }}" method="GET" class="d-flex">
+                        @csrf
+                        <input type="search" name="search" class="form-control" placeholder="Tìm kiếm theo mã, email.">
+                        <button type="submit" class="btn btn-info rounded-3 ms-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -36,7 +45,7 @@
                                         {{ $com->user->email }}
                                     </td>
                                     <td>
-                                        {{ $com->product->name }}
+                                        <a href="{{ route('products.show', $com->id) }}">{{ $com->product->name }}</a>
                                     </td>
                                     <td>
                                         {{ $com->content }}

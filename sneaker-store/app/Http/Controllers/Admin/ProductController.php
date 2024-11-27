@@ -14,14 +14,18 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
         $statusLabels = [
             'available' => ['label' => 'Còn hàng', 'class' => 'text-success'],
             'out_of_stock' => ['label' => 'Hết hàng', 'class' => 'text-danger'],
             'discontinued' => ['label' => 'Ngừng kinh doanh', 'class' => '']
         ];
-        $products = Product::with('category')->latest('id')->paginate(8);
+        $products = Product::when($search, function($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('id', 'like', '%' . $search . '%');
+        })->with('category')->latest('id')->paginate(8);
         return view('admin.product.index', compact('products', 'statusLabels'));
     }
 

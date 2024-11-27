@@ -17,6 +17,16 @@
                         <strong>{{ session('message') }}</strong>
                     </div>
                 @endif
+                <div class="w-50">
+                    <form action="{{ route('user.index') }}" method="GET" class="d-flex">
+                        @csrf
+                        <input type="search" name="search" class="form-control"
+                            placeholder="Tìm kiếm người dùng theo email, họ tên, mã.">
+                        <button type="submit" class="btn btn-info rounded-3 ms-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -37,18 +47,24 @@
                                     <td>{{ $user->fullname }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <span class="{{ $status[$user->status]['class'] }}">{{ $status[$user->status]['value'] }}</span>
+                                        <span
+                                            class="{{ $status[$user->status]['class'] }}"><strong>{{ $status[$user->status]['value'] }}</strong></span>
                                     </td>
                                     <td>
-                                        <span class="{{ $roll[$user->roll]['class'] }}">{{ $roll[$user->roll]['value'] }}</span>
+                                        <span
+                                            class="{{ $roll[$user->roll]['class'] }}"><strong>{{ $roll[$user->roll]['value'] }}</strong></span>
                                     </td>
-                                    <td>{{ $user->created_at }}</td>
+                                    <td>{{ $user->created_at->format('d-m-Y') }}</td>
                                     <td>
                                         @if ($user->status == 'active')
-                                            <a href="{{ route('banAccount', $user->id) }}" onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?')" class="btn btn-lg text-danger"><i
+                                            <a href="{{ route('banAccount', $user->id) }}"
+                                                onclick="return confirm('Bạn có chắc muốn khóa tài khoản này?')"
+                                                class="btn btn-link btn-lg text-danger {{ $user->roll == 'admin' ? 'disabled' : '' }}"><i
                                                     class="fa-solid fa-ban"></i></a>
                                         @else
-                                            <a href="{{ route('unbanAccount', $user->id) }}" onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?')" class="btn btn-lg text-primary"><i class="fa-solid fa-check"></i></a>
+                                            <a href="{{ route('unbanAccount', $user->id) }}"
+                                                onclick="return confirm('Bạn có chắc muốn mở khóa tài khoản này?')"
+                                                class="btn btn-lg text-primary"><i class="fa-solid fa-check"></i></a>
                                         @endif
                                     </td>
                                 </tr>

@@ -45,9 +45,10 @@
             </ul>
             <div class="d-flex align-items-center">
                 <div>
-                    <form action="" method="get">
+                    <form action="{{ route('brand.search') }}" method="get">
+                        @csrf
                         <div class="d-flex">
-                            <input type="search" class="form-control" placeholder="Nhập để tìm kiếm.">
+                            <input type="search" name="search" class="form-control" value="{{ request('search') }}" placeholder="Nhập để tìm kiếm.">
                             <button type="submit" class="btn btn-sm border"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
