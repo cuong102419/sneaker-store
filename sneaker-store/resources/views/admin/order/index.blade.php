@@ -71,7 +71,7 @@
                                             <div><strong>Địa chỉ:</strong> {{ $order->shipping_address }}</div>
                                         </td>
                                         <td>
-                                            {{ $order->payment_method === 'cod' ? 'Thanh toán khi nhận hàng (COD).' : 'Chuyển khoản ngân hàng.' }}
+                                            {{ $order->payment_method === 'COD' ? 'Thanh toán khi nhận hàng (COD).' : 'Chuyển khoản ngân hàng.' }}
                                             <div>
                                                 Trạng thái: <span
                                                     class="{{ $paymentStatus[$order->payment_status]['class'] }}"><strong>{{ $paymentStatus[$order->payment_status]['value'] }}</strong></span>

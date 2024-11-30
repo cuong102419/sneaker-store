@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->double('total_amount');
             $table->enum('payment_status', ['paid', 'unpaid', 'refunded'])->default('unpaid');
-            $table->string('payment_method')->default('cod');
+            $table->string('payment_method')->default('COD');
             $table->string('shipping_address');
             $table->text('customer_notes')->nullable();
             $table->string('phone_number', 20);

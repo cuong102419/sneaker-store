@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 27, 2024 at 04:08 PM
+-- Generation Time: Nov 30, 2024 at 03:05 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -130,7 +130,7 @@ CREATE TABLE `orders` (
   `status` enum('pending','processing','completed','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `total_amount` double NOT NULL,
   `payment_status` enum('paid','unpaid','refunded') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unpaid',
-  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cod',
+  `payment_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COD',
   `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_notes` text COLLATE utf8mb4_unicode_ci,
   `phone_number` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -144,8 +144,28 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `status`, `total_amount`, `payment_status`, `payment_method`, `shipping_address`, `customer_notes`, `phone_number`, `fullname`, `created_at`, `updated_at`) VALUES
-(1, 1, 'completed', 5580000, 'paid', 'cod', 'hà nội', NULL, '0369251248', 'Mạnh Cường', '2024-11-15 07:41:08', '2024-11-15 07:41:58'),
-(2, NULL, 'completed', 8280000, 'paid', 'transfer', 'hà nội', NULL, '1234561234', 'Ahihi', '2024-11-27 15:00:43', '2024-11-27 15:02:26');
+(1, 1, 'completed', 5580000, 'paid', 'COD', 'hà nội', NULL, '0369251248', 'Mạnh Cường', '2024-11-15 07:41:08', '2024-11-15 07:41:58'),
+(2, NULL, 'completed', 8280000, 'paid', 'transfer', 'hà nội', NULL, '1234561234', 'Ahihi', '2024-11-27 15:00:43', '2024-11-27 15:02:26'),
+(3, NULL, 'pending', 1890000, 'unpaid', 'transfer', 'hà nội', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 13:39:01', '2024-11-30 13:39:01'),
+(4, NULL, 'pending', 3690000, 'unpaid', 'transfer', '1234', NULL, '1234561231', 'Phạm Mạnh Cường', '2024-11-30 13:59:42', '2024-11-30 13:59:42'),
+(5, NULL, 'pending', 3690000, 'unpaid', 'transfer', '123', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:00:51', '2024-11-30 14:00:51'),
+(6, NULL, 'pending', 230000000, 'unpaid', 'transfer', '1234', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:09:20', '2024-11-30 14:09:20'),
+(7, NULL, 'pending', 1890000, 'unpaid', 'transfer', 'hà nội', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:12:01', '2024-11-30 14:12:01'),
+(8, NULL, 'pending', 4090000, 'unpaid', 'COD', 'hà nội', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:24:55', '2024-11-30 14:24:55'),
+(9, NULL, 'pending', 1890000, 'unpaid', 'ATM', '1234', NULL, '0369251248', 'Phạm Mạnh Cường', '2024-11-30 14:32:52', '2024-11-30 14:32:52'),
+(10, NULL, 'pending', 3690000, 'unpaid', 'ATM', 'hà nội', NULL, '0369251248', 'Phạm Mạnh Cường', '2024-11-30 14:34:39', '2024-11-30 14:34:39'),
+(11, NULL, 'pending', 3690000, 'unpaid', 'COD', 'hà nội', NULL, '0369251248', 'Phạm Mạnh Cường', '2024-11-30 14:34:52', '2024-11-30 14:34:52'),
+(12, NULL, 'pending', 8180000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:35:54', '2024-11-30 14:35:54'),
+(13, NULL, 'pending', 8180000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:36:03', '2024-11-30 14:36:03'),
+(14, NULL, 'pending', 8180000, 'unpaid', 'ATM', '1234', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:39:38', '2024-11-30 14:39:38'),
+(15, NULL, 'pending', 9470000, 'unpaid', 'ATM', 'hà nội', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:12', '2024-11-30 14:42:12'),
+(16, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:25', '2024-11-30 14:42:25'),
+(17, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:28', '2024-11-30 14:42:28'),
+(18, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123456', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:45:04', '2024-11-30 14:45:04'),
+(19, 1, 'completed', 3180000, 'paid', 'ATM', 'hà nội', NULL, '1234561234', 'Admin', '2024-11-30 14:48:08', '2024-11-30 14:53:03'),
+(20, 1, 'pending', 2590000, 'paid', 'ATM', 'hà nội', NULL, '1234561234', 'Ahihi', '2024-11-30 14:55:16', '2024-11-30 14:55:16'),
+(21, 1, 'cancelled', 230000000, 'refunded', 'ATM', 'hà nội', NULL, '0369251248', 'haha', '2024-11-30 15:00:22', '2024-11-30 15:02:43'),
+(22, 1, 'pending', 3690000, 'unpaid', 'ATM', 'hà nội', NULL, '0369251248', 'Admin', '2024-11-30 15:03:18', '2024-11-30 15:03:18');
 
 -- --------------------------------------------------------
 
@@ -173,7 +193,29 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `variant_id`, `quanti
 (1, 1, 6, 21, 1, 1890000, 1890000, '2024-11-15 07:41:08', '2024-11-15 07:41:08'),
 (2, 1, 8, 30, 1, 3690000, 3690000, '2024-11-15 07:41:08', '2024-11-15 07:41:08'),
 (3, 2, 1, 2, 1, 2590000, 2590000, '2024-11-27 15:00:43', '2024-11-27 15:00:43'),
-(4, 2, 11, 38, 1, 5690000, 5690000, '2024-11-27 15:00:43', '2024-11-27 15:00:43');
+(4, 2, 11, 38, 1, 5690000, 5690000, '2024-11-27 15:00:43', '2024-11-27 15:00:43'),
+(5, 3, 6, 23, 1, 1890000, 1890000, '2024-11-30 13:39:01', '2024-11-30 13:39:01'),
+(6, 4, 8, 28, 1, 3690000, 3690000, '2024-11-30 13:59:42', '2024-11-30 13:59:42'),
+(7, 5, 8, 29, 1, 3690000, 3690000, '2024-11-30 14:00:51', '2024-11-30 14:00:51'),
+(8, 6, 10, 36, 1, 230000000, 230000000, '2024-11-30 14:09:20', '2024-11-30 14:09:20'),
+(9, 7, 6, 23, 1, 1890000, 1890000, '2024-11-30 14:12:01', '2024-11-30 14:12:01'),
+(10, 8, 12, 42, 1, 4090000, 4090000, '2024-11-30 14:24:55', '2024-11-30 14:24:55'),
+(11, 9, 6, 22, 1, 1890000, 1890000, '2024-11-30 14:32:52', '2024-11-30 14:32:52'),
+(12, 10, 8, 30, 1, 3690000, 3690000, '2024-11-30 14:34:39', '2024-11-30 14:34:39'),
+(13, 11, 8, 30, 1, 3690000, 3690000, '2024-11-30 14:34:52', '2024-11-30 14:34:52'),
+(14, 12, 12, 42, 2, 4090000, 8180000, '2024-11-30 14:35:54', '2024-11-30 14:35:54'),
+(15, 13, 12, 42, 2, 4090000, 8180000, '2024-11-30 14:36:03', '2024-11-30 14:36:03'),
+(16, 14, 12, 42, 2, 4090000, 8180000, '2024-11-30 14:39:38', '2024-11-30 14:39:38'),
+(17, 15, 12, 42, 2, 4090000, 8180000, '2024-11-30 14:42:12', '2024-11-30 14:42:12'),
+(18, 15, 9, 31, 1, 1290000, 1290000, '2024-11-30 14:42:12', '2024-11-30 14:42:12'),
+(19, 16, 9, 31, 1, 1290000, 1290000, '2024-11-30 14:42:25', '2024-11-30 14:42:25'),
+(20, 17, 9, 31, 1, 1290000, 1290000, '2024-11-30 14:42:28', '2024-11-30 14:42:28'),
+(21, 18, 9, 31, 1, 1290000, 1290000, '2024-11-30 14:45:04', '2024-11-30 14:45:04'),
+(22, 19, 9, 31, 1, 1290000, 1290000, '2024-11-30 14:48:08', '2024-11-30 14:48:08'),
+(23, 19, 6, 22, 1, 1890000, 1890000, '2024-11-30 14:48:08', '2024-11-30 14:48:08'),
+(24, 20, 1, 4, 1, 2590000, 2590000, '2024-11-30 14:55:16', '2024-11-30 14:55:16'),
+(25, 21, 10, 36, 1, 230000000, 230000000, '2024-11-30 15:00:22', '2024-11-30 15:00:22'),
+(26, 22, 8, 30, 1, 3690000, 3690000, '2024-11-30 15:03:18', '2024-11-30 15:03:18');
 
 -- --------------------------------------------------------
 
@@ -232,18 +274,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `image`, `status`, `view`, `sales_count`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Giày Nike Air Force 1 ’07 ‘Triple White’ (WMNS)', '<p>Nike Air Force 1 ’07 ‘Triple White’ là một trong những đôi giày thể thao nhất định phải có dành cho các sneakerhead bởi sự đơn giản mà thu hút của nó.Được thiết kế phù hợp với xu hướng chunky sneaker, đôi AF1 này mang lại cái nhìn thời thượng và phong cách khi mang chúng trên chân. Được hoàn thiện với dấu Swoosh đặc trưng của Nike và các lỗ đục ở phần mũi giày khiến cho chúng không chỉ đẹp mà còn vô cùng thoải mái và thông thoáng khi sử dụng.</p>\r\nNếu bạn đang tìm kiếm một đôi giày thể thao cao cấp, thì Nike Air Force 1 All White Code Women có thể là lựa chọn hoàn hảo dành cho bạn. Giày được bao phủ bởi lớp da cao cấp với màu trắng sang trọng với ren kim loại mang thương hiệu AF1 màu bạc đặc trưng của Nike để tạo nên sự tương phản lung linh.</p>', 2590000, 'images/Ojtq0YU7kP2FMaZqxLrvIhb0apxRrfywIShkhPzh.webp', 'available', 3, 1, NULL, '2024-11-15 07:02:26', '2024-11-27 15:00:43'),
+(1, 2, 'Giày Nike Air Force 1 ’07 ‘Triple White’ (WMNS)', '<p>Nike Air Force 1 ’07 ‘Triple White’ là một trong những đôi giày thể thao nhất định phải có dành cho các sneakerhead bởi sự đơn giản mà thu hút của nó.Được thiết kế phù hợp với xu hướng chunky sneaker, đôi AF1 này mang lại cái nhìn thời thượng và phong cách khi mang chúng trên chân. Được hoàn thiện với dấu Swoosh đặc trưng của Nike và các lỗ đục ở phần mũi giày khiến cho chúng không chỉ đẹp mà còn vô cùng thoải mái và thông thoáng khi sử dụng.</p>\r\nNếu bạn đang tìm kiếm một đôi giày thể thao cao cấp, thì Nike Air Force 1 All White Code Women có thể là lựa chọn hoàn hảo dành cho bạn. Giày được bao phủ bởi lớp da cao cấp với màu trắng sang trọng với ren kim loại mang thương hiệu AF1 màu bạc đặc trưng của Nike để tạo nên sự tương phản lung linh.</p>', 2590000, 'images/Ojtq0YU7kP2FMaZqxLrvIhb0apxRrfywIShkhPzh.webp', 'available', 4, 2, NULL, '2024-11-15 07:02:26', '2024-11-30 14:55:16'),
 (2, 2, 'Giày nam Nike Dunk Low Retro ‘Panda’ White Black (2021)', '<p>Nike dự kiến ​​phát hành một số phối màu Dunk mới vào năm 2021, bao gồm phiên bản “Trắng / Đen” này của Dunk Low.</p>\r\nSản phẩm này của Nike Dunk Low được khoác lên mình bộ màu trắng và đen cổ điển. Nó có đế bằng da màu Trắng với lớp phủ màu đen và Swooshes trên đỉnh đế giữa màu trắng và đế ngoài bằng cao su màu đen.</p>', 3250000, 'images/VA5pLjq3lOEDuOmwuTuvS8mKrPKlnvCPkdSLOlTG.webp', 'available', 2, 0, NULL, '2024-11-15 07:04:57', '2024-11-15 07:05:24'),
 (3, 1, 'Giày adidas Samba OG ‘White Black Gum’', '<p>Adidas Samba OG ‘White Black Gum’ B75806 là một đôi giày thể thao cổ điển được thiết kế dành cho bóng đá futsal. Nó có phần upper được làm từ da lộn và da bóng với các điểm nhấn màu trắng, đen và nâu gum.</p>\r\nPhần upper của giày có màu trắng chủ đạo với các điểm nhấn màu đen và nâu gum. Nó có một thiết kế đơn giản và cổ điển.</p>\r\nĐế giữa của giày được làm từ EVA, một loại vật liệu nhẹ và đàn hồi. Nó cung cấp khả năng hấp thụ sốc và độ êm ái cho mỗi bước chân.</p>', 2490000, 'images/55fYzh8cNTn3CY8iBgSJFhRIGLYlib8uNI5ihU01.jpg', 'available', 3, 0, NULL, '2024-11-15 07:07:38', '2024-11-27 15:11:46'),
 (4, 3, 'Giày Puma Breaker lthr black Man', '<p>Puma Breaker lthr black Man chính hãng với khả năng chống thấm nước trên cả tuyệt vời, độ bền màu, chất liệu êm ái và những đường chỉ may tỉ mỉ từng li từng tí đem đến cho người tiêu dùng 1 sản phẩm đạt đến độ tinh xảo cao và chắc chắn, bền bỉ với thời gian. Không những thế, với vẻ ngoài mang hơi hướng hiện đại còn tôn lên được nét đẹp đến từ cá tính riêng của bạn. </p>', 2190000, 'images/nvCiVkYGglfVFVOhT2bkSbawDP1SN7VJB3ODves0.webp', 'available', 7, 0, NULL, '2024-11-15 07:10:53', '2024-11-27 16:06:22'),
 (5, 4, 'Giày New Balance 530 Retro ‘Running Navy’', '<p>New Balance là một thương hiệu thời trang và giày thể thao từ Mỹ. Hơn 100 năm qua, New Balance luôn tìm hiểu nhu cầu của những vận động viên để đầu tư, thiết kế những sản phẩm phù hợp. New Balance luôn tập trung đến từng chuyển động của cơ thể con người để có thể “Tạo-Ra-Điều-Tuyệt-Vời” (Making Excellent Happen)!</p>', 2890000, 'images/tkuJX6NMRnazy3ZDvW34U1hpyuKHV2X3mIa4vsO2.webp', 'available', 2, 0, NULL, '2024-11-15 07:14:28', '2024-11-15 07:26:20'),
-(6, 1, 'Giày adidas Superstar ‘White Black’', 'Adidas Superstar ‘White Black’ hiện đã có sẵn tại Sneaker Store, đừng bỏ lỡ cơ hội của mình nhé!', 1890000, 'images/kw6uoANaqhtT84P0njpmYY99qaRe5nEqfOfOUNCt.webp', 'available', 6, 1, NULL, '2024-11-15 07:17:26', '2024-11-27 14:51:35'),
+(6, 1, 'Giày adidas Superstar ‘White Black’', 'Adidas Superstar ‘White Black’ hiện đã có sẵn tại Sneaker Store, đừng bỏ lỡ cơ hội của mình nhé!', 1890000, 'images/kw6uoANaqhtT84P0njpmYY99qaRe5nEqfOfOUNCt.webp', 'available', 10, 5, NULL, '2024-11-15 07:17:26', '2024-11-30 14:48:08'),
 (7, 1, 'Giày Adidas Campus 00s ‘Black White Gum’', '<p>Giày Adidas Campus 00s ‘Black White Gum’ là một phiên bản cập nhật của dòng giày Campus cổ điển của adidas. Đôi giày được ra mắt vào năm 2022, với thiết kế mang đậm phong cách retro và chất liệu cao cấp.</p>\r\nGiày có phần upper được làm từ da nubuck và da lộn, mang lại sự bền bỉ và thoải mái. Phần upper có màu đen chủ đạo, với các chi tiết màu trắng ở lưỡi gà, logo adidas và đế giữa. Phần đế ngoài được làm từ cao su gum, mang lại độ bám tốt trên nhiều bề mặt khác nhau.</p>\r\nGiày Adidas Campus 00s ‘Black White Gum’ có thiết kế đơn giản nhưng tinh tế, phù hợp với nhiều phong cách thời trang khác nhau. Đôi giày là một lựa chọn tuyệt vời cho những người yêu thích giày thể thao cổ điển.</p>', 2790000, 'images/5dwiNMDzQj8eSvLgvYf8BhiHs17DdptjXJf85XfK.webp', 'available', 1, 0, NULL, '2024-11-15 07:20:13', '2024-11-15 07:20:17'),
-(8, 4, 'Giày New Balance 574 ‘White Grey’', '<p>Giày New Balance 574 ‘White Grey’ (Mã sản phẩm: U574FOG) là một mẫu giày thể thao phối màu với sự kết hợp giữa màu trắng và màu xám. Đây là một phiên bản mang tính chất cổ điển, phù hợp cho cả các hoạt động thể thao và thời trang hàng ngày.</p>\r\nMô tả này chỉ mang tính chất tổng quan và không đầy đủ chi tiết. Để có mô tả chính xác hơn và hiểu rõ hơn về sản phẩm, bạn nên tham khảo thông tin từ nguồn gốc, như trang web chính thức của New Balance hoặc các trang web mua sắm trực tuyến uy tín.</p>', 3690000, 'images/PZ2i0kYetsS93Xexy0Zk4OqRPfrPeCdwMkSZ6df6.webp', 'available', 3, 1, NULL, '2024-11-15 07:23:11', '2024-11-15 07:41:08'),
-(9, 3, 'Giày Puma RS-X Patent Jr ‘White Yellow Alert’', '<p>Giày Puma RS-X Patent Jr ‘White Yellow Alert’ được sản xuất từ chất liệu được chọn lọc cao cấp, đường chỉ may chắc chắn, độ bền cao, nâng niu từng bước chân của bạn. Đế cao su chắc chắn có khả năng ma sát tốt, chống trơn trượt, có thể di chuyển trên nhiều địa hình. Giày Puma dễ dàng phối hợp cùng các trang phục hàng ngày, phù hợp khi đi học, đi chơi, dạo phố, tập thể dục… </p>', 1290000, 'images/lZ5kkSn9zCFYEzniX4ATc4AaD4VEhO7qn4WQiGSk.webp', 'available', 3, 0, NULL, '2024-11-15 07:25:59', '2024-11-27 05:12:03'),
-(10, 2, 'Giày nam Dior x Air Jordan 1 High', '<p>Nếu bạn là một fan hâm mộ của Dior AJ1 High, hãy đợi cho đến khi bạn nhìn thấy Dior x Air Jordan 1 High. Chắc chắn là một trong những bản collab sneaker hot nhất trong cả thập kỷ, hình bóng một đôi Air Jordan chưa bao giờ thực sự bùng nổ như thế này trước đây, và đã đến lúc để mọi người phải trầm trồ. Được giới thiệu tại triển lãm “Paris 3020.” của nghệ sĩ đương đại Daniel Arsham, đây là mọi thứ bạn cần biết về đôi Jordan 1 High Dior mới nhất của Kim Jones.</p>\r\nMàu sắc hoàn hảo, Jordan 1 High Dior được sơn trong một bảng màu trắng và xám – cụ thể hơn là “Dior Grey”, một màu chỉ được sử dụng bởi nhà tạo mốt Paris. Thương hiệu “Air Dior” nổi bật ở lưỡi và gót, nơi bạn cũng sẽ tìm thấy họa tiết bóng rổ có cánh mang tính biểu tượng được chạm khắc nổi. Dọc theo các mặt bên và mặt giữa, một logo Swoosh có dây buộc thanh lịch lướt qua như một sự tôn kính đối với mẫu giày B-23 của thương hiệu quý phái, chúng mang tính biểu tượng theo đúng nghĩa.</p>\r\nCác lỗ cổ điển được đục lỗ trên mũi giày để mang lại trải nghiệm thông khí tuyệt vời và bên dưới là nơi bạn sẽ tìm thấy đế giữa Air huyền thoại mang đến sự thoải mái và lớp đệm ảo. Để hoàn thiện công trình nghệ thuật, chi tiết đồng thương hiệu được in khắp phần dưới của mỗi đôi giày, được trình bày qua đế ngoài bằng cao su màu xanh băng giá trong suốt giống như một tác phẩm nghệ thuật trong bảo tàng.</p>\r\nSố lượng sản xuất giới hạn chỉ 4.700 đôi, ám chỉ sự ra mắt của Christian Dior’s New Look vào năm 1947, Dior x Jordan 1 High là một đôi giày không giống bất cứ thứ gì khác ngoài thị trường. Nếu bạn là một tay chơi đẳng cấp, hay là một tín đồ thời trang chính hiệu, hãy nhanh tay đặt ngay cho mình một đôi trước khi chúng biến mất khỏi thị trường.\r\n</p>', 230000000, 'images/BMjSFOdBagQMQqhOoy9vUBQW1MzlxBrrTIJrhNOl.webp', 'available', 4, 0, NULL, '2024-11-15 07:30:22', '2024-11-27 14:45:07'),
+(8, 4, 'Giày New Balance 574 ‘White Grey’', '<p>Giày New Balance 574 ‘White Grey’ (Mã sản phẩm: U574FOG) là một mẫu giày thể thao phối màu với sự kết hợp giữa màu trắng và màu xám. Đây là một phiên bản mang tính chất cổ điển, phù hợp cho cả các hoạt động thể thao và thời trang hàng ngày.</p>\r\nMô tả này chỉ mang tính chất tổng quan và không đầy đủ chi tiết. Để có mô tả chính xác hơn và hiểu rõ hơn về sản phẩm, bạn nên tham khảo thông tin từ nguồn gốc, như trang web chính thức của New Balance hoặc các trang web mua sắm trực tuyến uy tín.</p>', 3690000, 'images/PZ2i0kYetsS93Xexy0Zk4OqRPfrPeCdwMkSZ6df6.webp', 'available', 7, 6, NULL, '2024-11-15 07:23:11', '2024-11-30 15:03:18'),
+(9, 3, 'Giày Puma RS-X Patent Jr ‘White Yellow Alert’', '<p>Giày Puma RS-X Patent Jr ‘White Yellow Alert’ được sản xuất từ chất liệu được chọn lọc cao cấp, đường chỉ may chắc chắn, độ bền cao, nâng niu từng bước chân của bạn. Đế cao su chắc chắn có khả năng ma sát tốt, chống trơn trượt, có thể di chuyển trên nhiều địa hình. Giày Puma dễ dàng phối hợp cùng các trang phục hàng ngày, phù hợp khi đi học, đi chơi, dạo phố, tập thể dục… </p>', 1290000, 'images/lZ5kkSn9zCFYEzniX4ATc4AaD4VEhO7qn4WQiGSk.webp', 'available', 4, 5, NULL, '2024-11-15 07:25:59', '2024-11-30 14:48:08'),
+(10, 2, 'Giày nam Dior x Air Jordan 1 High', '<p>Nếu bạn là một fan hâm mộ của Dior AJ1 High, hãy đợi cho đến khi bạn nhìn thấy Dior x Air Jordan 1 High. Chắc chắn là một trong những bản collab sneaker hot nhất trong cả thập kỷ, hình bóng một đôi Air Jordan chưa bao giờ thực sự bùng nổ như thế này trước đây, và đã đến lúc để mọi người phải trầm trồ. Được giới thiệu tại triển lãm “Paris 3020.” của nghệ sĩ đương đại Daniel Arsham, đây là mọi thứ bạn cần biết về đôi Jordan 1 High Dior mới nhất của Kim Jones.</p>\r\nMàu sắc hoàn hảo, Jordan 1 High Dior được sơn trong một bảng màu trắng và xám – cụ thể hơn là “Dior Grey”, một màu chỉ được sử dụng bởi nhà tạo mốt Paris. Thương hiệu “Air Dior” nổi bật ở lưỡi và gót, nơi bạn cũng sẽ tìm thấy họa tiết bóng rổ có cánh mang tính biểu tượng được chạm khắc nổi. Dọc theo các mặt bên và mặt giữa, một logo Swoosh có dây buộc thanh lịch lướt qua như một sự tôn kính đối với mẫu giày B-23 của thương hiệu quý phái, chúng mang tính biểu tượng theo đúng nghĩa.</p>\r\nCác lỗ cổ điển được đục lỗ trên mũi giày để mang lại trải nghiệm thông khí tuyệt vời và bên dưới là nơi bạn sẽ tìm thấy đế giữa Air huyền thoại mang đến sự thoải mái và lớp đệm ảo. Để hoàn thiện công trình nghệ thuật, chi tiết đồng thương hiệu được in khắp phần dưới của mỗi đôi giày, được trình bày qua đế ngoài bằng cao su màu xanh băng giá trong suốt giống như một tác phẩm nghệ thuật trong bảo tàng.</p>\r\nSố lượng sản xuất giới hạn chỉ 4.700 đôi, ám chỉ sự ra mắt của Christian Dior’s New Look vào năm 1947, Dior x Jordan 1 High là một đôi giày không giống bất cứ thứ gì khác ngoài thị trường. Nếu bạn là một tay chơi đẳng cấp, hay là một tín đồ thời trang chính hiệu, hãy nhanh tay đặt ngay cho mình một đôi trước khi chúng biến mất khỏi thị trường.\r\n</p>', 230000000, 'images/BMjSFOdBagQMQqhOoy9vUBQW1MzlxBrrTIJrhNOl.webp', 'available', 6, 2, NULL, '2024-11-15 07:30:22', '2024-11-30 15:00:22'),
 (11, 2, 'Giày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’', '<p>Giày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’ DV1748-601 là một sản phẩm độc đáo được Nike phát hành nhân kỷ niệm 1 năm của bộ phim Spider-Man: Into the Spider-Verse. Được thiết kế bởi giám đốc sáng tạo của phim, Peter Ramsey, và tay đua xe đạp BMX người Mỹ-Pháp, Thibaut Grevet, bộ sản phẩm này là một sự kết hợp độc đáo giữa hai thương hiệu lừng danh.</p>\r\nVới màu đỏ chủ đạo của Jordan 1, giày cũng được trang trí bằng các chi tiết màu xanh lá cây và xanh dương, cùng với đường viền trắng phản chiếu ánh sáng trong bóng tối. Đặc biệt, logo của Spider-Man được in trên đế giày, đem lại sự tinh tế và độc đáo cho sản phẩm.</p>\r\nGiày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’ DV1748-601 được làm từ chất liệu da cao cấp, đảm bảo độ bền và thoải mái khi sử dụng. Với kiểu dáng hiện đại và trẻ trung, giày là sự kết hợp hoàn hảo giữa phong cách và sự độc đáo của Spider-Man và thương hiệu Nike.</p>\r\nBộ sản phẩm có một bộ đôi giày cùng hộp đựng được trang trí bằng hình ảnh Spider-Man, tạo nên một món quà tuyệt vời cho các fan của phim hoặc những người yêu thích giày sneaker độc đáo.</p>', 5690000, 'images/cphm6WjzTMIu0Kd7FiAHQcRHRTlNdltG352J2nDi.webp', 'available', 11, 1, NULL, '2024-11-15 07:35:27', '2024-11-27 15:00:43'),
-(12, 4, 'Giày New Balance 550 ‘White Team Red\'', '<p>New Balance là một thương hiệu thời trang và giày thể thao từ Mỹ. Hơn 100 năm qua, New Balance luôn tìm hiểu nhu cầu của những vận động viên để đầu tư, thiết kế những sản phẩm phù hợp. New Balance luôn tập trung đến từng chuyển động của cơ thể con người để có thể “Tạo-Ra-Điều-Tuyệt-Vời” (Making Excellent Happen)!</p>', 4090000, 'images/GBV4jjT6pIazVOCYiVUsbsSQKglStHXANTPXwaDA.webp', 'available', 13, 0, NULL, '2024-11-15 07:37:41', '2024-11-27 16:04:07'),
+(12, 4, 'Giày New Balance 550 ‘White Team Red\'', '<p>New Balance là một thương hiệu thời trang và giày thể thao từ Mỹ. Hơn 100 năm qua, New Balance luôn tìm hiểu nhu cầu của những vận động viên để đầu tư, thiết kế những sản phẩm phù hợp. New Balance luôn tập trung đến từng chuyển động của cơ thể con người để có thể “Tạo-Ra-Điều-Tuyệt-Vời” (Making Excellent Happen)!</p>', 4090000, 'images/GBV4jjT6pIazVOCYiVUsbsSQKglStHXANTPXwaDA.webp', 'available', 15, 5, NULL, '2024-11-15 07:37:41', '2024-11-30 14:42:12'),
 (13, 2, 'hihi', '12', 12345, 'images/emlN9rviy3G4c4J4pmXHuDXtxRmxEJVxnm8JqgiS.webp', 'available', 0, 0, '2024-11-26 08:42:01', '2024-11-26 08:39:43', '2024-11-26 08:42:01'),
 (14, 3, 'ahihi', '23', 2222, 'images/MGpm1GynoJfvjjoEatEcXwlXBOHz7FbXrb8XEkXe.webp', 'available', 0, 0, '2024-11-26 08:42:52', '2024-11-26 08:42:49', '2024-11-26 08:42:52');
 
@@ -606,13 +648,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

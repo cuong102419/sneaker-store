@@ -14,7 +14,7 @@
             @endif
         </div>
         @if (session('cart'))
-            <form action="{{ route('createOrder') }}" method="post">
+            <form id="multiActionForm"  method="post">
                 @csrf
                 <div class="row">
                     <div class="col-6">
@@ -90,16 +90,12 @@
                         <div>
                             <input type="hidden" name="total_amount" value="{{ $total_amount }}">
                         </div>
-                        <div class="mt-4">
-                            <input type="radio" name="payment_method" value="cod" checked class="form-check-input">
-                            <label for="" class="form-label ms-3"><b>Thanh toán khi nhận hàng (COD)</b></label>
-                        </div>
-                        <div class="mt-3">
-                            <input type="radio" name="payment_method" value="transfer" class="form-check-input">
-                            <label for="" class="form-label ms-3"><b>Chuyển khoản ngân hàng</b></label>
+                        <div class="mt-4 text-center">
+                            <button type="submit" onclick="setAction(this.form, '{{ route('createOrder') }}')" class="btn btn-danger w-100">ĐẶT HÀNG</button>
                         </div>
                         <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-danger w-100">ĐẶT HÀNG</button>
+                            <button type="submit" onclick="setAction(this.form, '{{ route('vnpay_payment') }}')" name="redirect" class="btn btn-outline-dark mb-3 w-100">Thanh toán
+                                VNPay</button>
                         </div>
                     </div>
                 </div>
@@ -108,4 +104,9 @@
             <h3 class="text-center">Chưa có sản phẩm nào</h3>
         @endif
     </div>
+    <script>
+        function setAction(form, actionUrl) {
+            form.action = actionUrl;
+        }
+    </script>
 @endsection

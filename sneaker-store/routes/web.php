@@ -14,6 +14,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAuth;
@@ -61,6 +62,7 @@ Route::prefix('/order')->group(function () {
 });
 
 Route::get('/pay', [OrderItemController::class, 'pay'])->name('pay');
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
 
 Route::prefix('/user')->middleware('auth')->group(function() {
     Route::get('/information', [UserController::class, 'information'])->name('information');

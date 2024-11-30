@@ -14,32 +14,31 @@ class OrderController extends Controller
     {
         try {
             $cart = session('cart', []);
-        $data = $request->validate([
-            'fullname' => ['required'],
-            'phone_number' => ['required', 'max:15', 'min:10'],
-            'shipping_address' => ['required'],
-            'customer_notes' => ['nullable'],
-            'payment_method' => ['required'],
-            'total_amount' => ['required'],
-        ]);
+            $data = $request->validate([
+                'fullname' => ['required'],
+                'phone_number' => ['required', 'max:15', 'min:10'],
+                'shipping_address' => ['required'],
+                'customer_notes' => ['nullable'],
+                'payment_method' => ['nullable'],
+                'total_amount' => ['required'],
+            ]);
 
-        if (Auth::user()) {
-            $data['user_id'] = Auth::user()->id;
-        }
-
-        if ($cart) {
-            $order = Order::query()->create($data);
-            foreach ($cart as $item) {
-                $item['order_id'] = $order->id;
-
-                OrderItem::query()->create($item);
-                Product::findOrFail($item['product_id'])->increment('sales_count');
+            if (Auth::user()) {
+                $data['user_id'] = Auth::user()->id;
             }
 
-            session()->forget('cart');
-        }
+            if ($cart) {
+                $order = Order::query()->create($data);
+                foreach ($cart as $item) {
+                    $item['order_id'] = $order->id;
 
-        return redirect()->route('showOrder', $order->id)->with('message', 'Cảm ơn bạn. Đơn hàng đã được nhận.');
+                    OrderItem::query()->create($item);
+                    Product::findOrFail($item['product_id'])->increment('sales_count');
+                }
+
+                session()->forget('cart');
+            }
+            return redirect()->route('showOrder', $order->id)->with('message', 'Cảm ơn bạn. Đơn hàng đã được nhận.');
 
         } catch (\Throwable $th) {
             return redirect()->back();
