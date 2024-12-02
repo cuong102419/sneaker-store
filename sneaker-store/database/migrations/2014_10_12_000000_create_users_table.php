@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('status', ['active', 'deactive'])->default('active');
             $table->enum('roll', ['admin', 'user'])->default('user');
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

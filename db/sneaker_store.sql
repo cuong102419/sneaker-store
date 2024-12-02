@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 30, 2024 at 03:05 PM
+-- Generation Time: Dec 02, 2024 at 03:25 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -159,13 +159,14 @@ INSERT INTO `orders` (`id`, `user_id`, `status`, `total_amount`, `payment_status
 (13, NULL, 'pending', 8180000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:36:03', '2024-11-30 14:36:03'),
 (14, NULL, 'pending', 8180000, 'unpaid', 'ATM', '1234', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:39:38', '2024-11-30 14:39:38'),
 (15, NULL, 'pending', 9470000, 'unpaid', 'ATM', 'hà nội', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:12', '2024-11-30 14:42:12'),
-(16, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:25', '2024-11-30 14:42:25'),
-(17, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123', NULL, '1234561234', 'bố mày đây', '2024-11-30 14:42:28', '2024-11-30 14:42:28'),
+(16, NULL, 'pending', 1290000, 'unpaid', 'ATM', 'Tp.Hồ Chí Minh', NULL, '1234561234', 'Ahihi 1', '2024-11-30 14:42:25', '2024-12-01 06:14:33'),
+(17, NULL, 'pending', 1290000, 'unpaid', 'ATM', 'Hà nội', NULL, '1234561234', 'Ahihi', '2024-11-30 14:42:28', '2024-12-01 06:14:08'),
 (18, NULL, 'pending', 1290000, 'unpaid', 'ATM', '123456', NULL, '1234561234', 'Phạm Mạnh Cường', '2024-11-30 14:45:04', '2024-11-30 14:45:04'),
 (19, 1, 'completed', 3180000, 'paid', 'ATM', 'hà nội', NULL, '1234561234', 'Admin', '2024-11-30 14:48:08', '2024-11-30 14:53:03'),
 (20, 1, 'pending', 2590000, 'paid', 'ATM', 'hà nội', NULL, '1234561234', 'Ahihi', '2024-11-30 14:55:16', '2024-11-30 14:55:16'),
 (21, 1, 'cancelled', 230000000, 'refunded', 'ATM', 'hà nội', NULL, '0369251248', 'haha', '2024-11-30 15:00:22', '2024-11-30 15:02:43'),
-(22, 1, 'pending', 3690000, 'unpaid', 'ATM', 'hà nội', NULL, '0369251248', 'Admin', '2024-11-30 15:03:18', '2024-11-30 15:03:18');
+(22, 1, 'pending', 3690000, 'unpaid', 'ATM', 'hà nội', NULL, '0369251248', 'Admin', '2024-11-30 15:03:18', '2024-11-30 15:03:18'),
+(23, NULL, 'pending', 1290000, 'unpaid', 'ATM', 'hà nội', NULL, '0369251248', 'Phạm Mạnh Cường', '2024-12-01 06:10:49', '2024-12-01 06:10:49');
 
 -- --------------------------------------------------------
 
@@ -215,7 +216,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `variant_id`, `quanti
 (23, 19, 6, 22, 1, 1890000, 1890000, '2024-11-30 14:48:08', '2024-11-30 14:48:08'),
 (24, 20, 1, 4, 1, 2590000, 2590000, '2024-11-30 14:55:16', '2024-11-30 14:55:16'),
 (25, 21, 10, 36, 1, 230000000, 230000000, '2024-11-30 15:00:22', '2024-11-30 15:00:22'),
-(26, 22, 8, 30, 1, 3690000, 3690000, '2024-11-30 15:03:18', '2024-11-30 15:03:18');
+(26, 22, 8, 30, 1, 3690000, 3690000, '2024-11-30 15:03:18', '2024-11-30 15:03:18'),
+(27, 23, 9, 33, 1, 1290000, 1290000, '2024-12-01 06:10:49', '2024-12-01 06:10:49');
 
 -- --------------------------------------------------------
 
@@ -282,7 +284,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `im
 (6, 1, 'Giày adidas Superstar ‘White Black’', 'Adidas Superstar ‘White Black’ hiện đã có sẵn tại Sneaker Store, đừng bỏ lỡ cơ hội của mình nhé!', 1890000, 'images/kw6uoANaqhtT84P0njpmYY99qaRe5nEqfOfOUNCt.webp', 'available', 10, 5, NULL, '2024-11-15 07:17:26', '2024-11-30 14:48:08'),
 (7, 1, 'Giày Adidas Campus 00s ‘Black White Gum’', '<p>Giày Adidas Campus 00s ‘Black White Gum’ là một phiên bản cập nhật của dòng giày Campus cổ điển của adidas. Đôi giày được ra mắt vào năm 2022, với thiết kế mang đậm phong cách retro và chất liệu cao cấp.</p>\r\nGiày có phần upper được làm từ da nubuck và da lộn, mang lại sự bền bỉ và thoải mái. Phần upper có màu đen chủ đạo, với các chi tiết màu trắng ở lưỡi gà, logo adidas và đế giữa. Phần đế ngoài được làm từ cao su gum, mang lại độ bám tốt trên nhiều bề mặt khác nhau.</p>\r\nGiày Adidas Campus 00s ‘Black White Gum’ có thiết kế đơn giản nhưng tinh tế, phù hợp với nhiều phong cách thời trang khác nhau. Đôi giày là một lựa chọn tuyệt vời cho những người yêu thích giày thể thao cổ điển.</p>', 2790000, 'images/5dwiNMDzQj8eSvLgvYf8BhiHs17DdptjXJf85XfK.webp', 'available', 1, 0, NULL, '2024-11-15 07:20:13', '2024-11-15 07:20:17'),
 (8, 4, 'Giày New Balance 574 ‘White Grey’', '<p>Giày New Balance 574 ‘White Grey’ (Mã sản phẩm: U574FOG) là một mẫu giày thể thao phối màu với sự kết hợp giữa màu trắng và màu xám. Đây là một phiên bản mang tính chất cổ điển, phù hợp cho cả các hoạt động thể thao và thời trang hàng ngày.</p>\r\nMô tả này chỉ mang tính chất tổng quan và không đầy đủ chi tiết. Để có mô tả chính xác hơn và hiểu rõ hơn về sản phẩm, bạn nên tham khảo thông tin từ nguồn gốc, như trang web chính thức của New Balance hoặc các trang web mua sắm trực tuyến uy tín.</p>', 3690000, 'images/PZ2i0kYetsS93Xexy0Zk4OqRPfrPeCdwMkSZ6df6.webp', 'available', 7, 6, NULL, '2024-11-15 07:23:11', '2024-11-30 15:03:18'),
-(9, 3, 'Giày Puma RS-X Patent Jr ‘White Yellow Alert’', '<p>Giày Puma RS-X Patent Jr ‘White Yellow Alert’ được sản xuất từ chất liệu được chọn lọc cao cấp, đường chỉ may chắc chắn, độ bền cao, nâng niu từng bước chân của bạn. Đế cao su chắc chắn có khả năng ma sát tốt, chống trơn trượt, có thể di chuyển trên nhiều địa hình. Giày Puma dễ dàng phối hợp cùng các trang phục hàng ngày, phù hợp khi đi học, đi chơi, dạo phố, tập thể dục… </p>', 1290000, 'images/lZ5kkSn9zCFYEzniX4ATc4AaD4VEhO7qn4WQiGSk.webp', 'available', 4, 5, NULL, '2024-11-15 07:25:59', '2024-11-30 14:48:08'),
+(9, 3, 'Giày Puma RS-X Patent Jr ‘White Yellow Alert’', '<p>Giày Puma RS-X Patent Jr ‘White Yellow Alert’ được sản xuất từ chất liệu được chọn lọc cao cấp, đường chỉ may chắc chắn, độ bền cao, nâng niu từng bước chân của bạn. Đế cao su chắc chắn có khả năng ma sát tốt, chống trơn trượt, có thể di chuyển trên nhiều địa hình. Giày Puma dễ dàng phối hợp cùng các trang phục hàng ngày, phù hợp khi đi học, đi chơi, dạo phố, tập thể dục… </p>', 1290000, 'images/lZ5kkSn9zCFYEzniX4ATc4AaD4VEhO7qn4WQiGSk.webp', 'available', 5, 6, NULL, '2024-11-15 07:25:59', '2024-12-01 06:10:49'),
 (10, 2, 'Giày nam Dior x Air Jordan 1 High', '<p>Nếu bạn là một fan hâm mộ của Dior AJ1 High, hãy đợi cho đến khi bạn nhìn thấy Dior x Air Jordan 1 High. Chắc chắn là một trong những bản collab sneaker hot nhất trong cả thập kỷ, hình bóng một đôi Air Jordan chưa bao giờ thực sự bùng nổ như thế này trước đây, và đã đến lúc để mọi người phải trầm trồ. Được giới thiệu tại triển lãm “Paris 3020.” của nghệ sĩ đương đại Daniel Arsham, đây là mọi thứ bạn cần biết về đôi Jordan 1 High Dior mới nhất của Kim Jones.</p>\r\nMàu sắc hoàn hảo, Jordan 1 High Dior được sơn trong một bảng màu trắng và xám – cụ thể hơn là “Dior Grey”, một màu chỉ được sử dụng bởi nhà tạo mốt Paris. Thương hiệu “Air Dior” nổi bật ở lưỡi và gót, nơi bạn cũng sẽ tìm thấy họa tiết bóng rổ có cánh mang tính biểu tượng được chạm khắc nổi. Dọc theo các mặt bên và mặt giữa, một logo Swoosh có dây buộc thanh lịch lướt qua như một sự tôn kính đối với mẫu giày B-23 của thương hiệu quý phái, chúng mang tính biểu tượng theo đúng nghĩa.</p>\r\nCác lỗ cổ điển được đục lỗ trên mũi giày để mang lại trải nghiệm thông khí tuyệt vời và bên dưới là nơi bạn sẽ tìm thấy đế giữa Air huyền thoại mang đến sự thoải mái và lớp đệm ảo. Để hoàn thiện công trình nghệ thuật, chi tiết đồng thương hiệu được in khắp phần dưới của mỗi đôi giày, được trình bày qua đế ngoài bằng cao su màu xanh băng giá trong suốt giống như một tác phẩm nghệ thuật trong bảo tàng.</p>\r\nSố lượng sản xuất giới hạn chỉ 4.700 đôi, ám chỉ sự ra mắt của Christian Dior’s New Look vào năm 1947, Dior x Jordan 1 High là một đôi giày không giống bất cứ thứ gì khác ngoài thị trường. Nếu bạn là một tay chơi đẳng cấp, hay là một tín đồ thời trang chính hiệu, hãy nhanh tay đặt ngay cho mình một đôi trước khi chúng biến mất khỏi thị trường.\r\n</p>', 230000000, 'images/BMjSFOdBagQMQqhOoy9vUBQW1MzlxBrrTIJrhNOl.webp', 'available', 6, 2, NULL, '2024-11-15 07:30:22', '2024-11-30 15:00:22'),
 (11, 2, 'Giày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’', '<p>Giày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’ DV1748-601 là một sản phẩm độc đáo được Nike phát hành nhân kỷ niệm 1 năm của bộ phim Spider-Man: Into the Spider-Verse. Được thiết kế bởi giám đốc sáng tạo của phim, Peter Ramsey, và tay đua xe đạp BMX người Mỹ-Pháp, Thibaut Grevet, bộ sản phẩm này là một sự kết hợp độc đáo giữa hai thương hiệu lừng danh.</p>\r\nVới màu đỏ chủ đạo của Jordan 1, giày cũng được trang trí bằng các chi tiết màu xanh lá cây và xanh dương, cùng với đường viền trắng phản chiếu ánh sáng trong bóng tối. Đặc biệt, logo của Spider-Man được in trên đế giày, đem lại sự tinh tế và độc đáo cho sản phẩm.</p>\r\nGiày Spider-Man × Nike Air Jordan 1 Retro High OG SP ‘Next Chapter’ DV1748-601 được làm từ chất liệu da cao cấp, đảm bảo độ bền và thoải mái khi sử dụng. Với kiểu dáng hiện đại và trẻ trung, giày là sự kết hợp hoàn hảo giữa phong cách và sự độc đáo của Spider-Man và thương hiệu Nike.</p>\r\nBộ sản phẩm có một bộ đôi giày cùng hộp đựng được trang trí bằng hình ảnh Spider-Man, tạo nên một món quà tuyệt vời cho các fan của phim hoặc những người yêu thích giày sneaker độc đáo.</p>', 5690000, 'images/cphm6WjzTMIu0Kd7FiAHQcRHRTlNdltG352J2nDi.webp', 'available', 11, 1, NULL, '2024-11-15 07:35:27', '2024-11-27 15:00:43'),
 (12, 4, 'Giày New Balance 550 ‘White Team Red\'', '<p>New Balance là một thương hiệu thời trang và giày thể thao từ Mỹ. Hơn 100 năm qua, New Balance luôn tìm hiểu nhu cầu của những vận động viên để đầu tư, thiết kế những sản phẩm phù hợp. New Balance luôn tập trung đến từng chuyển động của cơ thể con người để có thể “Tạo-Ra-Điều-Tuyệt-Vời” (Making Excellent Happen)!</p>', 4090000, 'images/GBV4jjT6pIazVOCYiVUsbsSQKglStHXANTPXwaDA.webp', 'available', 15, 5, NULL, '2024-11-15 07:37:41', '2024-11-30 14:42:12'),
@@ -509,16 +511,20 @@ CREATE TABLE `users` (
   `roll` enum('admin','user') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `google_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `status`, `roll`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin123@a.com', '$2y$12$cNkGickpkw8g/xeI7xzEM./NTbMNHydMwZdiifyJt6Yrnjl.MF4jG', 'active', 'admin', NULL, '2024-11-15 06:28:48', '2024-11-15 06:28:48'),
-(2, 'Bố mày đây', 'a@gmail.com', '$2y$12$2OSMrWGWKfOCS4yyRCt.2uGSaWovj/2fq3pWJMN.30zt4TLdXh5q6', 'active', 'user', NULL, '2024-11-15 07:42:41', '2024-11-26 13:32:15');
+INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `status`, `roll`, `remember_token`, `created_at`, `updated_at`, `google_id`) VALUES
+(1, 'Admin', 'admin123@a.com', '$2y$12$cNkGickpkw8g/xeI7xzEM./NTbMNHydMwZdiifyJt6Yrnjl.MF4jG', 'active', 'admin', NULL, '2024-11-15 06:28:48', '2024-11-15 06:28:48', NULL),
+(2, 'Bố mày đây', 'a@gmail.com', '$2y$12$2OSMrWGWKfOCS4yyRCt.2uGSaWovj/2fq3pWJMN.30zt4TLdXh5q6', 'active', 'user', NULL, '2024-11-15 07:42:41', '2024-11-26 13:32:15', NULL),
+(3, 'Cường Mạnh', 'cuongmanh1024@gmail.com', '$2y$12$7TE/pDSklEhVhbK7GSwB.uSZK6CyM4tI9xMWGGRU0bXuivShwOf2u', 'active', 'user', NULL, '2024-12-02 15:16:29', '2024-12-02 15:16:29', '112194592993961722179'),
+(4, 'Mạnh Cường', 'pbtpetien2004@gmail.com', '$2y$12$62GqKK9.18DsTgOSaqz5DuTIvYWBrNIS2ZbrQIy18pD3ZojEWZsLS', 'active', 'user', NULL, '2024-12-02 15:18:14', '2024-12-02 15:18:14', '104819126731679827576'),
+(5, 'Mạnh Cường', 'danlangto19@gmail.com', '$2y$12$cIKtxQgl6/IS.EbTcamSNulBWxf/cPQ0qoigSbHnegNrDFyskjW3y', 'active', 'user', NULL, '2024-12-02 15:21:50', '2024-12-02 15:21:50', '113776963799197801605');
 
 --
 -- Indexes for dumped tables
@@ -648,13 +654,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -690,7 +696,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
