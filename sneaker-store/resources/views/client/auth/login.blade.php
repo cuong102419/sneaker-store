@@ -34,6 +34,10 @@
                                 khoản.</a></small>
                     </div>
                 </div>
+                <div class="mt-2">
+                    <a href="{{ route('auth.google') }}" class="btn btn-primary"><i class="fa-brands fa-google fa-xl"></i></a>
+                    <a href="" class="btn btn-light text-primary"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+                </div>
             </form>
         </div>
     </div>

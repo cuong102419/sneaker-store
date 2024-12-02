@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PaymentController;
@@ -64,13 +65,13 @@ Route::prefix('/order')->group(function () {
 Route::get('/pay', [OrderItemController::class, 'pay'])->name('pay');
 Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
 
-Route::prefix('/user')->middleware('auth')->group(function() {
+Route::prefix('/user')->middleware('auth')->group(function () {
     Route::get('/information', [UserController::class, 'information'])->name('information');
     Route::put('/change-password', [UserController::class, 'changePassword'])->name('changePassword');
     Route::get('/order', [UserController::class, 'orderList'])->name('orderList');
 });
 
-Route::prefix('/brand')->group(function() {
+Route::prefix('/brand')->group(function () {
     Route::get('/{category}', [CategoryController::class, 'index'])->name('brand.index');
     Route::get('/', [CategoryController::class, 'search'])->name('brand.search');
 });
@@ -98,3 +99,7 @@ Route::prefix('/admin')->middleware([CheckAuth::class])->group(function () {
     Route::get('/comments', [AdminCommentController::class, 'index'])->name('comment.index');
     Route::delete('/comments/{comment}', [AdminCommentController::class, 'destroy'])->name('comment.destroy');
 });
+
+// Login by google account
+Route::get('auth/google', [LoginGoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
