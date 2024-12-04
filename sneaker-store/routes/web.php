@@ -13,6 +13,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginGoogleController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\PaymentController;
@@ -103,3 +104,10 @@ Route::prefix('/admin')->middleware([CheckAuth::class])->group(function () {
 // Login by google account
 Route::get('auth/google', [LoginGoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [LoginGoogleController::class, 'handleGoogleCallback']);
+
+// Forgot password
+Route::get('/forgot-password', [MailController::class, 'forgot_password'])->name('forgot-password');
+Route::post('/recover-password', [MailController::class, 'recover_password'])->name('recover-password');
+
+Route::get('/reset-password/{token}', [MailController::class, 'reset_password'])->name('reset-password');
+Route::put('/reset-password/{token}', [MailController::class, 'change_password'])->name('change-password');

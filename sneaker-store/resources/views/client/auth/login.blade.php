@@ -30,6 +30,9 @@
                 <div class="mt-3 d-flex justify-content-between">
                     <button type="submit" class="btn btn-dark">Đăng nhập</button>
                     <div class="mt-2">
+                        <small><a href="{{ route('forgot-password') }}" class="text-decoration-none text-dark">Quên mật khẩu.</a></small>
+                    </div>
+                    <div class="mt-2">
                         <small><a href="{{ route('formRegister') }}" class="text-decoration-none text-dark">Đăng ký tài
                                 khoản.</a></small>
                     </div>
